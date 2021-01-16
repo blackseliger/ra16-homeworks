@@ -68,5 +68,5 @@ return (
 
 ## Решение
 
-[Решение задания](store-func-react)
+:jack_o_lantern:[Решение задания](store-func-react):jack_o_lantern:
 
