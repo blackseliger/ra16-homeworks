@@ -22,7 +22,9 @@ class Portfolio extends React.Component {
         return (
             <div>
                 {<Toolbar filters={this.filters} selected={this.state.selected} onSelectFilter={this.onSelectFilter}></Toolbar>}
+                 {/* projects={(this.state.selected === "All") ? this.projects : this.projects.filter( (el) => el.category === this.state.selected) */}
                 {<ProjectList projects={(this.state.selected === "All") ? this.projects : this.projects.filter( (el) => el.category === this.state.selected)}></ProjectList>}
+                {/* <ProjectList projects={this.state.selected === 'All' ? this.projects : this.projects.filter((o) => o.category === this.state.selected)}/> */}
             </div>
         )
     }

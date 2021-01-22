@@ -11,7 +11,7 @@ function App() {
   }
   
   const images =  [
-    [{
+    {
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
       category: "Business Cards"
     }, {
@@ -63,7 +63,7 @@ function App() {
       img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
       category: "Flayers"
     }]
-  ]
+
   return (
    <PortFolio filters={buttons} projects={images}></PortFolio>
   );
