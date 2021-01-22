@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
 import PortFolio from './components/Portfolio';
 import React from 'react'
-import Toolbar from './components/Toolbar';
+
 
 function App() {
 
