@@ -1,3 +1,8 @@
+## Решение
+
+!:jack_o_lantern:[Решение задания](filter):jack_o_lantern:
+
+
 Портфолио с фильтрами
 ===
 
@@ -90,3 +95,5 @@
   category: "Flayers"
 }]
 ```
+
+
