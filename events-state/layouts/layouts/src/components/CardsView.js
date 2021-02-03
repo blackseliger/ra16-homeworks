@@ -1,10 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SampleCard from './SampleCard';
 
-function CardsView(props) {
+function CardsView({products, icon}) {
+    const style = {
+
+    }
+
     return (
-        <div>
-            
+        <div className={icon}>
+            {products.map((card) => <SampleCard sample={card} key={card.name}></SampleCard>)}
         </div>
     )
 }
