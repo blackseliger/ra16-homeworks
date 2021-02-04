@@ -10,8 +10,12 @@ class Portfolio extends React.Component {
         this.state = {
             selected: "All"
         };
-        this.filters = props.filters;
-        this.projects = props.projects;
+        // this.filters = props.filters;
+        // this.projects = props.projects; 
+        // заметка!
+        // НЕ нужно сохранять изначальные props в поля класса,
+        //  ибо если props изменятся, то в полях this.filters и this.projects будет изначальные значения
+        // 
     }
 
     onSelectFilter = (state) => {
@@ -19,11 +23,14 @@ class Portfolio extends React.Component {
     }
 
     render() {
+        // this.filters = props.filters,
+        // this.projects = props.projects,
+        const {projects, filters } = this.props
         return (
             <div>
-                {<Toolbar filters={this.filters} selected={this.state.selected} onSelectFilter={this.onSelectFilter}></Toolbar>}
+                {<Toolbar filters={filters} selected={this.state.selected} onSelectFilter={this.onSelectFilter}></Toolbar>}
                  {/* projects={(this.state.selected === "All") ? this.projects : this.projects.filter( (el) => el.category === this.state.selected) */}
-                {<ProjectList projects={(this.state.selected === "All") ? this.projects : this.projects.filter( (el) => el.category === this.state.selected)}></ProjectList>}
+                {<ProjectList projects={(this.state.selected === "All") ? projects : projects.filter( (el) => el.category === this.state.selected)}></ProjectList>}
                 {/* <ProjectList projects={this.state.selected === 'All' ? this.projects : this.projects.filter((o) => o.category === this.state.selected)}/> */}
             </div>
         )
