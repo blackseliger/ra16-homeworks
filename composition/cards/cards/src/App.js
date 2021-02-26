@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import doom from './doom.jpg'
+import Card from './models/Card'
 
 function App() {
+
+  const card = [
+    {
+      img: doom
+    },
+    {
+      title: 'Название карточки',
+      text: 'Some quick example text to build on the card title and make up the bulk of the cards content.',
+      button_text: 'Go somewhere'
+    }
+  ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+            { card.map((elementCard) => 
+        <Card img={elementCard.img}>
+          {<h5 className="card-title">{elementCard.title || 'Card title'}</h5>}
+          {elementCard.text && <p className="card-text">{elementCard.text}</p>}
+          {<a href='#' className="btn btn-primary">{elementCard.button_text || 'Go somewere'}</a>}
+        </Card>
+      ) }
+    </>
   );
 }
 
