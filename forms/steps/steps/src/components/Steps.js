@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
+import { nanoid } from 'nanoid'
+import StepModel from '../models/StepModel';
 function Steps(props) {
 
     const [ form, setForm ] = useState({ date: '', distance: '' });
@@ -15,19 +16,27 @@ function Steps(props) {
 
     const handleSubmit = evt => {
         evt.preventDefault();
-        console.log(evt.type);
-        console.dir(evt.target);
+        const step = new StepModel(nanoid(), form.date, form.distance);
+        setStep(prevSteps => [...prevSteps, step]);
+        if (steps.length > 0) {
+            console.log(steps)
+           
+            setStep(prevSteps => prevSteps.sort((a, b) => {
+                return Date.parce(b.name) - Date.parce(a.name)
+            }))
+        }
+        setForm({date: '', distance: ''});
     }
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='date-input'>Дата (ДД.ММ.ГГ)</label>
-                    <input type='date' id='date' name='date' value={form.date} onChange={handleChange}></input>
+                    <input type='date' id='date' name='date' value={form.date} onChange={handleChange} required></input>
                 </div>
                 <div>
                     <label htmlFor='distance'>Дистанция км</label>
-                    <input id='distance' name='distance' value={form.distance} onChange={handleChange}></input>
+                    <input type='number'id='distance' name='distance' value={form.distance} onChange={handleChange} required></input>
                 </div>
                 <button type='submit'>OK</button>
             </form>
@@ -57,4 +66,3 @@ Steps.propTypes = {
 }
 
 export default Steps
-
