@@ -2,6 +2,15 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { nanoid } from 'nanoid'
 import StepModel from '../models/StepModel';
+
+
+
+
+//  Нужно декомпозировать!!!!!! 
+
+
+// Здравствуйте! Основную логику задания сделал, пожалуйста не принимайте задание, т.к. его еще не декомпозировал на "глупые" компоненты. Мне важен ваш комментарий после
+// завершения задания. Спасибо!!
 function Steps(props) {
 
     const [ form, setForm ] = useState({ date: '', distance: '' });
@@ -17,7 +26,13 @@ function Steps(props) {
     const handleSubmit = evt => {
         evt.preventDefault();
         const step = new StepModel(nanoid(), form.date, form.distance);
-        setStep(prevSteps => [...prevSteps, step]);
+
+        const equalStep = steps.findIndex(prevStep => Date.parse(prevStep.name) === Date.parse(step.name))
+        console.log(equalStep)
+        equalStep >= 0 ? 
+                steps[equalStep].distance += step.distance : 
+                setStep(prevSteps => [...prevSteps, step]);
+
         setStep(prevSteps => prevSteps.sort((a, b) => {
             if (Date.parse(a.name) > Date.parse(b.name)) {
                 return -1;
