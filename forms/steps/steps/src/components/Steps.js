@@ -18,13 +18,11 @@ function Steps(props) {
         evt.preventDefault();
         const step = new StepModel(nanoid(), form.date, form.distance);
         setStep(prevSteps => [...prevSteps, step]);
-        if (steps.length > 0) {
-            console.log(steps)
-           
-            setStep(prevSteps => prevSteps.sort((a, b) => {
-                return Date.parce(b.name) - Date.parce(a.name)
+        setStep(prevSteps => prevSteps.sort((a, b) => {
+            if (Date.parse(a.name) > Date.parse(b.name)) {
+                return -1;
+            }
             }))
-        }
         setForm({date: '', distance: ''});
     }
     return (
@@ -49,8 +47,9 @@ function Steps(props) {
                 <div>
                     <ul>
                         {steps.map(step => <li key={step.id}>
-                            {step.name}
-                            {step.distance}
+                            <span>{step.name}</span>
+                            
+                            <span>{step.distance}</span>
                             <button>Delete</button>
                             <button>Edit</button>
                         </li>)}
