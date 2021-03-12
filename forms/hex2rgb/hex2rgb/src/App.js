@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Formhex from './models/Formhex'
+import Formhex from './components/Formhex'
 
 function App() {
   return (
