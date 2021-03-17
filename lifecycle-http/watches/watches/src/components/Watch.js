@@ -2,42 +2,47 @@ import React, { Component } from 'react'
 import moment from 'moment'
 
 export class Watch extends Component {
-
-        state = {
-            time: moment().utcOffset(this.props.watch.timezone)
+    constructor(props){
+        super(props)
+        this.state = {
+            time: moment().utcOffset(this.props.timezone)
         }
+    }
+
 
     componentDidMount() {
         this.interval = setInterval(this.updateTime, 50);
         }
 
-    updateTime() {
+    updateTime = () => {
         this.setState({
-            time: moment().utcOffset(this.props.watch.timezone)
+            time: moment().utcOffset(this.props.timezone)
         })
     }
     
         
-    tick() {
-            let testTime = moment().utcOffset(this.time)
-            let hours = testTime.hour();
-            let minutes = testTime.minute();
-            let seconds = testTime.second();
-            let time = `${hours}:${minutes}:${seconds}`;
-            return time;
+    tick(time) {
+            let hours = time.hour();
+            let minutes = time.minute();
+            let seconds = time.second();
+            let watch = `${hours}:${minutes}:${seconds}`;
+            return watch;
         }
 
     render() {
-        const time = this.tick()
-        console.log(this.props.watch.timezone);
-        const { name_zone } = this.props
+        const time = this.tick(this.state.time);
         return (
             <div className='watch'>
-                <div>{name_zone}</div>
-                <div>{time}</div>
+                <span>{this.props.name_time}</span>
+                <span>{time}</span>
             </div>
         )
     }
+}
+
+
+Watch.defaultProps = {
+    timezone: 0,
 }
 
 export default Watch

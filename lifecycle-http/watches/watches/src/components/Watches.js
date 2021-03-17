@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import WatchesModel from '../models/WatchesModel';
 import { nanoid } from 'nanoid'
 import Watch from './Watch';
+import WatchList from './WatchList';
 
 
 export default class Watches extends Component {
@@ -14,6 +15,7 @@ export default class Watches extends Component {
             watches: [],
         }
     }
+
 
     handleChange = evt => {
         const name = evt.target.name;
@@ -29,7 +31,10 @@ export default class Watches extends Component {
     };
 
     render() {
-        const { watchName, watches } = this.state
+        const { watchName } = this.state
+        const watchList = {
+            watches: this.state.watches
+        }
         return (
             <div>
         <form onSubmit={this.handleSubmit}>
@@ -39,82 +44,19 @@ export default class Watches extends Component {
                     <input type='timezone' name='timezone' value={watchName.timezone} onChange={this.handleChange}></input>
                     <button type='submit'>OK</button> 
          </form> 
-            {watches.map( watchEl => <Watch key={ watchEl.id }watch={watchEl}></Watch>)}
+            <WatchList {...watchList}></WatchList>
             </div>
         )
     }
 }
 
+Watches.defaultProps = {
+    watchName : {name_time: 'name', timezone: '3'}
+}
 
+Watches.propTypes = {
 
-// function Watches(props) {
-
-//     const [ watcheName, setWatcheName ] = useState({name_time: '', timezone: ''});
-//     const [ watches, setWatches ] = useState([]);
-
-
-//     const handleChange = evt => {
-//         evt.preventDefault();
-//         const name = evt.target.name;
-//         const value = evt.target.type === 'name-time' ? evt.target.value : evt.target.value;
-//         setWatcheName(prevWatcheName => ({...prevWatcheName, [name]: value}));
-//     }
-
-//     const updateTime = () => {
-        // let testTime = moment().utcOffset(7)
-        // let hours = testTime.hours();
-        // let minutes = testTime.minute();
-        // let seconds = testTime.second();
-        // let time = `${hours}:${minutes}:${seconds}`;
-        // return time;
-//     }
-
-//     let time = updateTime();
-//     // setWatches(prevWatches => [...prevWatches, time]);
-//     const handleSubmit = evt => {
-//         evt.preventDefault();
-//         console.log(moment.locale())
-//         console.log(moment().format('LT'))
-//         console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
-//         console.log(moment().format('LTS') )
-//         // const testTime = moment().utcOffset(7)
-//         // let hours = testTime.hours();
-//         // let minutes = testTime.minute();
-//         // let seconds = testTime.second();
-//         // let time = `${hours}:${minutes}:${seconds}`;
-//         // setWatches(prevWatches => [...prevWatches, time]);
-//         // console.log(`${hours}:${minutes}: ${seconds}`)
-//         // узнал временную зону 
-
-//         const componentDidMount = () => {
-//             let timer = setInterval(updateTime, 50);
-//           }
-        
-
-//         componentDidMount();
-//         // в лекции был сетинтвервал, чтоб каждую секунду двигались часы
-
-//     }
-
-
-//     return (
-//     <>
-//         <form onSubmit={handleSubmit}>
-//             <label htmlFor='name_time'>Название</label>
-//             <input type='name_time' name='name_time' value={watcheName.name} onChange={handleChange}></input> 
-//             <label htmlFor='timezone'>Временная зона</label>
-//             <input type='timezone' name='timezone' value={watcheName.timezone} onChange={handleChange}></input>
-//             <button type='submit'>OK</button> 
-//         </form>
-//         <span>{time}</span>
-
-//     </>
-//     )
-// }
-
-// Watches.propTypes = {
-
-// }
+}
 
 // export default Watches
 
