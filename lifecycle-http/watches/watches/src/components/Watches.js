@@ -16,6 +16,13 @@ export default class Watches extends Component {
         }
     }
 
+    removeWatch = (name) => {
+        this.setState((prevState) => ({
+            watches: prevState.watches.filter((watch) => watch.name_time !== name),
+            })
+        )
+    }
+
 
     handleChange = evt => {
         const name = evt.target.name;
@@ -33,7 +40,8 @@ export default class Watches extends Component {
     render() {
         const { watchName } = this.state
         const watchList = {
-            watches: this.state.watches
+            watches: this.state.watches,
+            onRemove: this.removeWatch,
         }
         return (
             <div>
@@ -51,7 +59,7 @@ export default class Watches extends Component {
 }
 
 Watches.defaultProps = {
-    watchName : {name_time: 'name', timezone: '3'}
+    watchName : {name_time: 'name', timezone: '6'}
 }
 
 Watches.propTypes = {

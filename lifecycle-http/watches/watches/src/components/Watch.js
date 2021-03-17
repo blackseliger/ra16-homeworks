@@ -9,6 +9,8 @@ export class Watch extends Component {
         }
     }
 
+    handleRemove = () => this.props.onRemove(this.props.name_time)
+
 
     componentDidMount() {
         this.interval = setInterval(this.updateTime, 50);
@@ -35,6 +37,7 @@ export class Watch extends Component {
             <div className='watch'>
                 <span>{this.props.name_time}</span>
                 <span>{time}</span>
+                <button onClick={this.handleRemove}>Удалить часы</button>
             </div>
         )
     }
