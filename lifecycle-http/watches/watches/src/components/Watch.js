@@ -24,7 +24,7 @@ export class Watch extends Component {
             let minutes = testTime.minute();
             let seconds = testTime.second();
             let time = `${hours}:${minutes}:${seconds}`;
-            return testTime;
+            return time;
         }
 
     render() {
