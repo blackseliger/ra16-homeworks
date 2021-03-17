@@ -21,6 +21,12 @@ export class Watch extends Component {
             time: moment().utcOffset(this.props.timezone)
         })
     }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+
     
         
     tick(time) {
