@@ -39,7 +39,7 @@ export default class Watches extends Component {
                     <input type='timezone' name='timezone' value={watchName.timezone} onChange={this.handleChange}></input>
                     <button type='submit'>OK</button> 
          </form> 
-            {watches.map( watchEl => <Watch watch={watchEl}></Watch>)}
+            {watches.map( watchEl => <Watch key={ watchEl.id }watch={watchEl}></Watch>)}
             </div>
         )
     }
