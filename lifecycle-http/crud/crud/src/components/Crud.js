@@ -26,6 +26,8 @@ export class Crud extends Component {
         this.updateCrudCards()
     }
 
+
+
     handleChange = evt => {
         const name = evt.target.name;
         const value = evt.target.value;
@@ -79,7 +81,7 @@ export class Crud extends Component {
         return (
             <div>
                <AddForm {...crud_content} handleSubmit={this.handleSubmit} handleChange={this.handleChange}></AddForm>
-               <ListCardsCrud {...curdList}></ListCardsCrud>
+               <ListCardsCrud {...curdList} handleUpdate={this.updateCrudCards}></ListCardsCrud>
             </div>
         )
     }

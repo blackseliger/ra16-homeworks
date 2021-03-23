@@ -12,7 +12,6 @@ function AddForm(props) {
         props.handleChange(evt)
     }
 
-
     return (
         <form onSubmit={handleSubmit}>
             <InputForm content={props.content} handleChange={handleChange}></InputForm>
