@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, Component} from 'react';
+import moment from 'moment'
 
 function DateTime(props) {
     return (
@@ -6,11 +7,40 @@ function DateTime(props) {
     )
 }
 
+function DateFormatLeft(date) {
+    const propsDate = moment(date, 'YYYY-MM-DD HH:mm:ss')
+    const diff = moment().diff(propsDate);
+    if (diff > 86400000) return 'X дней назад'
+    if (diff > 3600000) return '5 часов назад'
+    return '12 минут назад'
+    
+
+}
+
+// function DateLeft(Component) {
+//     return class extends React.Component {
+//         render() {
+//         const propsDate = DateFormatLeft(this.props.date)
+//         return <Component {...this.props} date={propsDate}></Component>
+//         }
+//     }
+// }
+
+const DateLeft = (DateFormatLeft) => Component => class extends React.Component {
+    render() {
+        const propsDate = DateFormatLeft(this.props.date)
+        return <Component {...this.props} date={propsDate} />
+    }
+}
+
+
+const DateTimePretty = DateLeft(DateFormatLeft)(DateTime)
+
 function Video(props) {
     return (
         <div className="video">
             <iframe src={props.url} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <DateTime date={props.date} />
+            <DateTimePretty date={props.date} />
         </div>
     )
 }
