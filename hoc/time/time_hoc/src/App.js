@@ -13,8 +13,6 @@ function DateFormatLeft(date) {
     if (diff > 86400000) return 'X дней назад'
     if (diff > 3600000) return '5 часов назад'
     return '12 минут назад'
-    
-
 }
 
 // function DateLeft(Component) {
