@@ -36,17 +36,39 @@ function Video(props) {
     )
 };
 
+
+function  SortType(views) {
+    const type = (views < 1000) ? 'New' : 'Popular'
+
+    console.log(type);
+    return type
+}
+
+function SortHighlight(Component) {
+    return class extends React.Component {
+        render() {
+            console.log(this.props.views);
+            const TypeActual = SortType(this.props.views)
+            return <TypeActual><Component {...this.props}></Component></TypeActual>
+        }
+    }
+} 
+
+const ArticleHighlight = SortHighlight(Article);
+const VideoHighlight = SortHighlight(Video);
+
+
 function List(props) {
     return props.list.map(item => {
         switch (item.type) {
             case 'video':
                 return (
-                    <Video {...item} />
+                    <VideoHighlight {...item} />
                 );
 
             case 'article':
                 return (
-                    <Article {...item} />
+                    <ArticleHighlight {...item} />
                 );
         }
     });
