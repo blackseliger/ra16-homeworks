@@ -38,7 +38,7 @@ function Video(props) {
 
 
 function  SortType(views) {
-    const type = (views < 1000) ? 'New' : 'Popular'
+    const type = (views < 1000) ? New : Popular
 
     console.log(type);
     return type
