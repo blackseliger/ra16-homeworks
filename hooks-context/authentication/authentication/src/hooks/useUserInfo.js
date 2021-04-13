@@ -1,7 +1,5 @@
 import {useState, useEffect } from 'react';
 
-import React from 'react'
-
 function useUserInfo(url = '/private/news', token) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
