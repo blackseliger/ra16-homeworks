@@ -13,6 +13,11 @@ const app = new Koa();
 app.use(cors());
 app.use(koaBody());
 
+// app.use(koaBody({
+//     urlencoded: true,
+//     multipart: true,
+//     }));
+
 const tokens = new Map();
 const users = new Map();
 const rounds = 10;
@@ -93,4 +98,4 @@ app.use(router.allowedMethods());
 
 const port = process.env.PORT || 7070;
 const server = http.createServer(app.callback());
-server.listen(port);
+server.listen(port, () => console.log('server started'));
