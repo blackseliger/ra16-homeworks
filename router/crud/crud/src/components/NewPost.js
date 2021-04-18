@@ -5,12 +5,15 @@ import FormNewPost from './FormNewPost';
 
 function NewPost({history}) {
 
-    const { postNew } = useContext(PostContext);
+    const { postNew, editID, postEdit } = useContext(PostContext);
+
 
     const [value, setValue] = useState('');
-
     const handleSubmit = () => {
-        postNew({ content: value })
+        if (postEdit !== null) {
+            postNew({id: Number(editID), content: value })
+            postEdit(null);
+        }   
         history.push('/')   
         // history.push('/') производит редирект на домашнюю страницу
     };

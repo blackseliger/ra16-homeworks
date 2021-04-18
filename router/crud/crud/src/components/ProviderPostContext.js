@@ -6,6 +6,7 @@ function ProviderPostContext(props) {
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [editID, setEdit] = useState(null);
 
 
     const postUpdate = () => {
@@ -31,13 +32,18 @@ function ProviderPostContext(props) {
         .then(postUpdate);
     };
 
+
+    const postEdit = (id) => {
+        setEdit(id)
+    }
+
     const postDelete = (id) => {
         fetch(`${process.env.REACT_APP_CRUD_URL}/${id}`, {method: `DELETE`})
         .then(postUpdate);
     }
 
     return (
-        <PostContext.Provider value={{posts, loading, postNew, postDelete }}>
+        <PostContext.Provider value={{posts, loading, editID, postNew, postDelete, postEdit }}>
             {props.children}
         </PostContext.Provider>
     )
