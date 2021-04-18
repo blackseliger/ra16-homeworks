@@ -10,10 +10,8 @@ function NewPost({history}) {
 
     const [value, setValue] = useState('');
     const handleSubmit = () => {
-        if (postEdit !== null) {
             postNew({id: Number(editID), content: value })
             postEdit(null);
-        }   
         history.push('/')   
         // history.push('/') производит редирект на домашнюю страницу
     };
