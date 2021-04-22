@@ -9,7 +9,9 @@ export default function serviceFilterReducer(state = intialState, action) {
     switch (action.type) {
         case FILTER_SERVICE: {
             const { value } = action.payload;
-            value.trim().toLowerCase()
+            
+            return {...state, filter: value.trim().toLowerCase()}
+            // исправлено
         }
         default:
             return state;
