@@ -11,12 +11,12 @@ const faker = require('faker');
 
 const app = new Koa();
 app.use(cors());
-app.use(koaBody());
+// app.use(koaBody());
 
-// app.use(koaBody({
-//     urlencoded: true,
-//     multipart: true,
-//     }));
+app.use(koaBody({
+    urlencoded: true,
+    multipart: true,
+    }));
 
 const tokens = new Map();
 const users = new Map();
@@ -64,17 +64,16 @@ const bearerAuth = passport.authenticate('bearer', { session: false });
 const router = new Router();
 router.post('/auth', async (ctx, next) => {
     const { login, password } = ctx.request.body;
-
     const user = users.get(login);
     if (user === undefined) {
-        ctx.response.status = 400;
-        ctx.response.body = { message: 'user not found' };
+        ctx.response.status = 401;
+        ctx.response.body = { message: `user not found`};
         return;
     }
 
     const result = await bcrypt.compare(password, user.password);
     if (result === false) {
-        ctx.response.status = 400;
+        ctx.response.status = 401;
         ctx.response.body = { message: 'invalid password' };
         return;
     }
