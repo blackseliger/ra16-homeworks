@@ -8,8 +8,8 @@ const { REACT_APP_AUTH_URL } = process.env
 function ProviderPostContext(props) {
     const [ token, setToken ] = useStorage(localStorage, 'token');
     const [ profile, setProfile ] = useStorage(localStorage, 'profile', true);
-    const [ profileContent, setProfileContent] = useUserInfo(`${REACT_APP_AUTH_URL}/private/me`, {token})
-    const [ profileNews, setProfileNews] = useUserInfo( `${REACT_APP_AUTH_URL}/private/news`, {token})
+    const [ profileContent, setProfileContent] = useUserInfo(`${REACT_APP_AUTH_URL}/private/me`, token)
+    const [ profileNews, setProfileNews] = useUserInfo( `${REACT_APP_AUTH_URL}/private/news`, token)
     
 
     const handleSubmit = evt => {

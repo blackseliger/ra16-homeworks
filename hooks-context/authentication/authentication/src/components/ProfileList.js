@@ -9,9 +9,9 @@ function ProfileList() {
     console.log(data);
     return (
         <div>
-            {data !== null ? 
-                        <ProfileContent />
-                        : <ProfileForm />}
+            {data === null ? 
+                        <ProfileForm /> 
+                        : <ProfileContent />}
         </div>
 
     )
