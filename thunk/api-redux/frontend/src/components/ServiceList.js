@@ -36,7 +36,7 @@ function ServiceList({match, history}) {
         <li key={o.id}>
           {o.name} {o.price}
           <button onClick={() => handleRemove(o.id)}>✕</button>
-          <button onClick={() => handleEdit(o)}>I</button>
+          <button onClick={() => handleEdit(o.id)}>I</button>
         </li>
       ))}
     </ul>

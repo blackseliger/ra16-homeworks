@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import ServiceAdd from './components/ServiceAdd';
 import ServiceList from './components/ServiceList';
 
@@ -12,13 +12,11 @@ function App() {
     <div className='App'>
       <Router> 
          <Switch>
-          <Route  path='/services'  component={ServiceList} />
-          <Route  path='/services/:id'  component={ServiceAdd} />
+          <Route  exact path='/services'  component={ServiceList} />
+          <Route  exact path='/services/:id([0-9]+)?'  component={ServiceAdd} />
+          <Redirect exact from='/' to='/services'></Redirect>
         </Switch>
       </Router>
-      {/* <ServiceAdd />
-      <ServiceList/> */} 
-      {/* если раскоментировать, то компоненты будут отображаться */}
     </div>
   );
 }

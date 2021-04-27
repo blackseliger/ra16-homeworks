@@ -19,7 +19,7 @@ function ServiceAdd({match, history}) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    addService(dispatch, item.name, item.price);
+    addService(dispatch, id, item.name, item.price, item.content);
   }
 
 
@@ -29,6 +29,7 @@ function ServiceAdd({match, history}) {
       <input name='name' onChange={handleChange} value={item.name} />
       <label htmlFor='price'>Стоимость</label>
       <input name='price' onChange={handleChange} value={item.price} />
+      <input name='content' onChange={handleChange} value={item.content}></input>
       <button type='submit' disabled={loading}>Save</button>
       {error && <p>Something went wrong try again</p>}
     </form>

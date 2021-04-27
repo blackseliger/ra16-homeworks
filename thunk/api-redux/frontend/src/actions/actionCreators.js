@@ -80,13 +80,13 @@ export const fetchServices = async (dispatch, id = null) => {
   }
 }
 
-export const addService = async (dispatch, name, price) => {
+export const addService = async (dispatch, id, name, price, content) => {
   dispatch(addServiceRequest()); // loading true
   try {
     const response = await fetch(`${process.env.REACT_APP_API_URL}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, price }),
+      body: JSON.stringify({ id, name, price, content }),
     })
     if (!response.ok) {
       throw new Error(response.statusText);
