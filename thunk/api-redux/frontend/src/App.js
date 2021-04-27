@@ -5,7 +5,7 @@ import ServiceList from './components/ServiceList';
 
 
 // const { REACT_APP_API_URL } = process.env
-const url = window.location.pathname;
+// const url = window.location.pathname;
 
 function App() {
   return (
