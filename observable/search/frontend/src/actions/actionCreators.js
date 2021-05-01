@@ -3,6 +3,7 @@ import {
   SEARCH_SKILLS_REQUEST,
   SEARCH_SKILLS_FAILURE,
   SEARCH_SKILLS_SUCCESS,
+  SEARCH_SKILLS_INIT,
 } from './actionTypes';
 
 
@@ -20,6 +21,10 @@ export const searchSkillsSuccess = items => ({
   type: SEARCH_SKILLS_SUCCESS,
   payload: {items},
 });
+
+export const searchSkillsInit = () => ({
+  type: SEARCH_SKILLS_INIT,
+})
 
 export const changeSearchField = search => ({
   type: CHANGE_SEARCH_FIELD,
