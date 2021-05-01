@@ -21,7 +21,7 @@ export function ServiceEdit({match, history}) {
         setFirstLoad(false);
         fetchServices(dispatch, match.params.id)
       }
-      fetchServices(dispatch, match.params.id)
+      // fetchServices(dispatch, match.params.id)
       }, [dispatch, loading])
 
     const handleChange = evt => {
