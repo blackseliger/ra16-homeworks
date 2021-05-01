@@ -6,7 +6,7 @@ import {
 } from '../actions/actionTypes'
 
 const initialState = {
-  item: { id: '', name: '', price: '', content: ''},
+  item: { name: '', price: '',},
   loading: false,
   error: null,
 };
