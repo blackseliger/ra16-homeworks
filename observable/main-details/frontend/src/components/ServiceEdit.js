@@ -29,6 +29,25 @@ export function ServiceEdit({match, history}) {
         // changeService(dispatch, match.params.id, item.name, item.price, item.content)
     }
 
+    const handleRefresh = () => {
+      dispatch(fetchServicesRequest(match.params.id));
+    };
+  
+    if (loading) {
+      return <div className='loading'></div>
+    }
+  
+    if (error) {
+      return (
+        <div className="error-fetch">
+          <div className="error-mes">Произошла ошибка!</div>
+          <div className="error-refresh" onClick={handleRefresh}>Повторить запрос</div>
+        </div>
+      );
+    }
+
+
+
     return (
       <React.Fragment>
       <form onSubmit={handleSubmit} disabled={loading} className="change-form">
