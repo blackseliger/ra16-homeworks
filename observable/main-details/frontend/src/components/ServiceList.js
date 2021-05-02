@@ -12,6 +12,25 @@ function ServiceList({match, history}) {
   }, [dispatch])
 
   console.log(items);
+
+  const handleRefresh = () => {
+    dispatch(fetchServicesRequest());
+  };
+
+  if (loading) {
+    return <div className='loading'></div>
+  }
+
+  if (error) {
+    return (
+      <div className="error-fetch">
+        <div className="error-mes">Произошла ошибка!</div>
+        <div className="error-refresh" onClick={handleRefresh}>Повторить запрос</div>
+      </div>
+    );
+  }
+
+
   // Здравствуйте! Прошу прощенья что пишу это не комментариях на сайте,
   // но встал на проблеме когда скинул задание,
   // т.к. был уверен что проблем не должно быть 
