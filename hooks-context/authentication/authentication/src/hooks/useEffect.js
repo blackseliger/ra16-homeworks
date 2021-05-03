@@ -8,7 +8,6 @@ function useUserInfo(url = `${REACT_APP_AUTH_URL}/private/news`, token) {
     const [error, setError] = useState(null);
 
 
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -34,7 +33,8 @@ function useUserInfo(url = `${REACT_APP_AUTH_URL}/private/news`, token) {
     fetchData();
 
             return () => {};
-        }, [token])
+        }, [token, url]);
+
     return [{data, loading, error}]    
 }
 
