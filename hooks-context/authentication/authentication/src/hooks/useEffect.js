@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const { REACT_APP_AUTH_URL } = process.env
 
-function useUserInfo(url = `${REACT_APP_AUTH_URL}/private/news`, token) {
+function useUserInfo(url = `${process.env.REACT_APP_AUTH_URL}/private/news`, token) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);

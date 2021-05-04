@@ -3,20 +3,19 @@ import PostContext from '../context/PostContext';
 import useStorage from './useStorage';
 import useUserInfo from './useEffect';
 
-const { REACT_APP_AUTH_URL } = process.env
 
 function ProviderPostContext(props) {
     const [ token, setToken ] = useStorage(localStorage, 'token');
     const [ profile, setProfile ] = useStorage(localStorage, 'profile', true);
-    const [ profileContent, setProfileContent] = useUserInfo(`${REACT_APP_AUTH_URL}/private/me`, token)
-    const [ profileNews, setProfileNews] = useUserInfo( `${REACT_APP_AUTH_URL}/private/news`, token)
+    const [ profileContent, setProfileContent] = useUserInfo(`${process.env.REACT_APP_AUTH_URL}/private/me`, token)
+    const [ profileNews, setProfileNews] = useUserInfo( `${process.env.REACT_APP_AUTH_URL}/private/news`, token)
     
 
     const handleSubmit = evt => {
         evt.preventDefault();
         const formData = new FormData(evt.target);
         const fetchData = async() => {
-            const responce = await fetch(`${REACT_APP_AUTH_URL}/auth`, {
+            const responce = await fetch(`${process.env.REACT_APP_AUTH_URL}/auth`, {
                 method: 'POST',
                 body: formData
             })
