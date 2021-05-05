@@ -21,13 +21,22 @@ function ServiceList({match, history}) {
     history.push(`${match.url}/${id}`)
   }
 
+  const handleRefresh = () => {
+    fetchServices(dispatch);
+  };
+
 
   if (loading) {
     return <p>Loading...</p>;
   }
 
   if (error) {
-    return <p>Something went wrong try again</p>;
+    return (
+      <React.Fragment>
+        <div className="error">Произошла ошибка!</div>
+        <div onClick={handleRefresh}>Refresh</div>
+      </React.Fragment>
+    );
   }
 
   return (

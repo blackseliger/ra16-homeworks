@@ -102,27 +102,20 @@ export const changeServiceFailure = (error) => ({
   type: CHANGE_SERVICE_FAILURE, payload: error,
 })
 
-export const changeServiceData = (item) => ({
-  type: CHANGE_SERVICE_DATA, payload: {
-    item
-  },
+export const changeServiceData = (data) => ({
+  type: CHANGE_SERVICE_DATA, payload: data
 })
 
 export const fetchServices = async (dispatch, id = null) => {
   dispatch(fetchServicesRequest());
   try {
-    const response = (id) ? await fetch(`${process.env.REACT_APP_API_URL}/${id}`) : await fetch(`${process.env.REACT_APP_API_URL}`)
+    const response = id ? await fetch(`${process.env.REACT_APP_API_URL}/${id}`) : await fetch(`${process.env.REACT_APP_API_URL}`)
     if (!response.ok) {
       throw new Error(response.statusText);
     }
     const data = await response.json();
-
     if (id) {
-      console.log(id)
-      console.log(data);
       dispatch(changeServiceData(data)) 
-      // dispatch(fetchServicesSuccess(data));
-      console.log(`gkdhgkdhkj`)
     }
     else {
       dispatch(fetchServicesSuccess(data));
@@ -151,19 +144,25 @@ export const addService = async (dispatch, name, price) => {
 }
 
 export const changeService = async (dispatch, id, name, price, content) => {
+  console.log( id, name, price, content)
   dispatch(changeServiceRequest()) ;
   try {
     const responce = await fetch(`${process.env.REACT_APP_API_URL}`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
       body: JSON.stringify({id, name, price, content})
     })
+    console.log(responce)
     if (!responce.ok) {
       throw new Error(responce.statusText);
     }
     dispatch(changeServiceSuccess())
+    fetchServices(dispatch);
   } catch(e) {
-    dispatch(changeServiceFailure(e.message));
+    console.log(e)
+    dispatch(changeServiceFailure({error:e.message}));
   }
 }
 

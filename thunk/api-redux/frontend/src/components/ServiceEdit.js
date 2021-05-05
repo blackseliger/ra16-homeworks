@@ -4,25 +4,24 @@ import { changeService, changeServiceField, fetchServices } from '../actions/act
 
 
 export function ServiceEdit({match, history}) {
-    const {item, loading, error} = useSelector(state => state.serviceChange);
+    const {item, loadingChange, errorChange} = useSelector(state => state.serviceChange);
+    const { loading, error } = useSelector(state => state.serviceList)
+    const [firstLoad, setfirstLoad] = useState(true)
     const dispatch = useDispatch();
-    const {firstLoad, setFirstLoad} = useState(true);
-
-    // console.log(match.params.id);
-    console.log(item);
 
     
-
     useEffect(() => {
-      if (!firstLoad && loading ) {
+      console.log(firstLoad)
+      if (!firstLoad && !loadingChange ) {
+        console.log(`false first load`)
         history.goBack()
-      };
+      }
       if (firstLoad) {
-        setFirstLoad(false);
+        setfirstLoad(false);
         fetchServices(dispatch, match.params.id)
       }
       // fetchServices(dispatch, match.params.id)
-      }, [dispatch, loading])
+      }, [dispatch, loadingChange])
 
     const handleChange = evt => {
         const {name, value} = evt.target; 
@@ -34,9 +33,37 @@ export function ServiceEdit({match, history}) {
         changeService(dispatch, match.params.id, item.name, item.price, item.content)
     }
 
+    
+    const handleCancel = () => {
+      history.goBack();
+    };
+  
+  
+    const handleBack = () => {
+      history.goBack();
+    };
+  
+    if (loading) {
+      return <div className='loading'></div>
+    }
+  
+    if (error) {
+      return (
+        <div>
+          <div className="error-msg">Произошла ошибка!</div>
+          <div onClick={handleBack}>Назад</div>
+        </div>
+      );
+    }
+
+
+
+
+
     return (
       <React.Fragment>
-      <form onSubmit={handleSubmit} disabled={loading} className="change-form">
+        fksghkjfsjfhskh
+      <form onSubmit={handleSubmit} disabled={loadingChange} className="change-form">
         <label>Название</label>
         <input name='name' onChange={handleChange} value={item.name} />
         <label>Стоимость</label>
@@ -44,12 +71,12 @@ export function ServiceEdit({match, history}) {
         <label>Описание</label>
         <input name='content' onChange={handleChange} value={item.content} />
         <div className="buttons">
-          {/* <button type='button'onClick={handleCancel}>Отмена</button> */}
-        <button type='submit'>Сохранить</button>
+          <button type='button'onClick={handleCancel}>Отмена</button>
+          {!loadingChange &&  <button type='submit'>Сохранить</button>}
         </div>
       </form>
-      {loading && <div className='loading'></div>}
-      {error && <p>{error.message}</p>}
+      {loadingChange && <div className='loading'></div>}
+      {errorChange && <p>{errorChange.message}</p>}
     </React.Fragment>
     )
 

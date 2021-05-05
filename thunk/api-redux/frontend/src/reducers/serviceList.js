@@ -4,6 +4,7 @@ import {
   FETCH_SERVICES_SUCCESS,
   REMOVE_SERVICE_REQUEST,
   REMOVE_SERVICE_SUCCESS,
+  CHANGE_SERVICE_DATA,
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -48,6 +49,8 @@ export default function serviceListReducer(state = initialState, action) {
           error: null,
           // items: state.items.filter(o => o.id !== id)
         };
+        case CHANGE_SERVICE_DATA:
+          return {...state, loading: false, error: null};
     default:
       return state;
   }
