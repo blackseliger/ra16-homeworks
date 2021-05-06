@@ -15,7 +15,7 @@
 }
 
 .list-item:hover {
-  background-color: lightgray;
+  background-color: rgb(87, 46, 46);
 }
 
 .list-item.selected {

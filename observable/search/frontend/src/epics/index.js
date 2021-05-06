@@ -9,7 +9,7 @@ export const changeSearchEpic = action$ => action$.pipe(
     ofType(CHANGE_SEARCH_FIELD),
     map(o => o.payload.search.trim()),
     // filter(o => o !== ''),
-    debounceTime(400),
+    debounceTime(100),
     map(o => o ? searchSkillsRequest(o) : searchSkillsInit())
 )
 

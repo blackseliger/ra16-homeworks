@@ -159,7 +159,6 @@ export const changeService = async (dispatch, id, name, price, content) => {
       throw new Error(responce.statusText);
     }
     dispatch(changeServiceSuccess())
-    fetchServices(dispatch);
   } catch(e) {
     console.log(e)
     dispatch(changeServiceFailure({error:e.message}));
